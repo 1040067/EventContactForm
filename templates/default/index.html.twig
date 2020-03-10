@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    <div style="margin-top:50px">
+    <h2 class="text-center">Welcome to our Events & Performances</h2>
+        <hr>
+    </div>
+        <div class="d-flex justify-content-center flex-wrap">
+{#    event and performance show#}
+            {% for performance in performances %}
+                {% if performance.date > date() %}
+                    <div class="card mt-3 mx-2">
+                        <div class="card-body">
+                            <h2>Artist: {{ performance.artist.name }}</h2>
+                            <h6>Music genre: {{ performance.artist.genre }}</h6>
+                            <p>Date: {{ performance.date|date('Y-m-d') }}</p>
+                            <p>Commencement: {{ performance.commencement|date('h:i A') }}</p>
+                            <p>Hall: {{ performance.hall }}</p>
+                            <p>Total seats: {{ performance.maxSeats }}</p>
+                            <p>Price: &euro;{{ performance.artist.price }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+{% endblock %}
+
